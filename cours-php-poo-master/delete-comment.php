@@ -10,7 +10,7 @@ require_once('libraries/database.php');
 require_once('libraries/utils.php');
 require_once('libraries/model/Comment.php');
 
-$modelC = new Comment();
+$modelC = new Comment('comments');
 
 /**
  * 1. Récupération du paramètre "id" en GET

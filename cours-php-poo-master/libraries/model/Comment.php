@@ -1,21 +1,11 @@
 <?php
 
-class Comment
+require_once('libraries/model/Model.php');
+
+class Comment extends Model
 {
     /**
-     * Data for the class
-     *
-     * @var PDO
-     */
-    private $pdo;
-
-    public function __construct()
-    {
-        $this->pdo = getPdo();
-    }
-
-    /**
-     * Undocumented function
+     * find comment
      *
      * @param integer $id
      * @return array
@@ -26,21 +16,6 @@ class Comment
         $query->execute(['article_id' => $id]);
         $commentaires = $query->fetchAll();
         return $commentaires;
-    }
-
-    /**
-     * cherche un commentaire
-     *
-     * @param integer $id
-     * @return array
-     */
-    public function find(int $id)
-    {
-        $query = $this->pdo->prepare('SELECT * FROM comments WHERE id = :id');
-        $query->execute(['id' => $id]);
-        $comment = $query->fetch();
-
-        return $comment;
     }
 
     /**

@@ -1,23 +1,10 @@
 
 <?php
 
-class Article
+require_once('libraries/model/Model.php');
+
+class Article extends Model
 {
-    /**
-     * Data for the Class
-     *
-     * @var PDO
-     */
-    private $pdo;
-
-    /**
-     * function construct
-     */
-    public function __construct()
-    {
-        $this->pdo = getPdo();
-    }
-
     /**
      * Retourne la liste des articles classés par date de création
      *
@@ -33,24 +20,7 @@ class Article
         return $articles;
     }
 
-    /**
-     * Returne
-     *
-     * @param integer $id
-     * @return array
-     */
-    public function find(int $id)
-    {
-        $query = $this->pdo->prepare("SELECT * FROM articles WHERE id = :article_id");
-
-        // On exécute la requête en précisant le paramètre :article_id 
-        $query->execute(['article_id' => $id]);
-
-        // On fouille le résultat pour en extraire les données réelles de l'article
-        $article = $query->fetch();
-
-        return $article;
-    }
+  
 
     /**
      * Suprime un article de la liste
