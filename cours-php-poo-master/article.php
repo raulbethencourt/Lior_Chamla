@@ -39,13 +39,13 @@ if (!$article_id) {
  * On va ici utiliser une requête préparée car elle inclue une variable qui provient de l'utilisateur : Ne faites
  * jamais confiance à ce connard d'utilisateur ! :D
  */
-$modelA->find($article_id);
+$article = $modelA->find($article_id);
 
 /**
  * 4. Récupération des commentaires de l'article en question
  * Pareil, toujours une requête préparée pour sécuriser la donnée filée par l'utilisateur (cet enfoiré en puissance !)
  */
-$modelC->findAll($article_id);
+$commentaires = $modelC->findAll($article_id);
 
 /**
  * 5. On affiche 

@@ -25,7 +25,7 @@ $id = $_GET['id'];
  * 3. Vérification de l'existence du commentaire
  * On récupère l'identifiant de l'article avant de supprimer le commentaire
  */
-$modelC->find($id);
+$commentaire = $modelC->find($id);
 if (!$commentaire) {
     die("Aucun commentaire n'a l'identifiant $id !");
 }

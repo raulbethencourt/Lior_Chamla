@@ -15,6 +15,11 @@
  */
 require_once('libraries/database.php');
 require_once('libraries/utils.php');
+require_once('libraries/model/Article.php');
+require_once('libraries/model/Comment.php');
+
+$modelA = new Article();
+$modelC = new Comment();
 
 /**
  * 1. On vérifie que les données ont bien été envoyées en POST
@@ -57,7 +62,7 @@ if (!$author || !$article_id || !$content) {
  * 
  * PS : Ca fait pas genre 3 fois qu'on écrit ces lignes pour se connecter ?! 
  */
-$article = findArticle($article_id);
+$article = $modelA->find($article_id);
 
 // Si rien n'est revenu, on fait une erreur
 if (!$article) {
@@ -65,7 +70,7 @@ if (!$article) {
 }
 
 // 3. Insertion du commentaire
-insertComment($author, $content, $article_id);
+$modelC->insert($author, $content, $article_id);
 
 // 4. Redirection vers l'article en question :
 redirect('article.php?id=' . $article_id);

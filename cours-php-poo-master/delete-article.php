@@ -24,8 +24,8 @@ $id = $_GET['id'];
 /**
  * 3. Vérification que l'article existe bel et bien
  */
-$modelA->find($id);
-if (!$id) {
+$article = $modelA->find($id);
+if (!$article) {
     die("L'article $id n'existe pas, vous ne pouvez donc pas le supprimer !");
 }
 
