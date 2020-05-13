@@ -10,7 +10,7 @@ require_once('libraries/database.php');
 require_once('libraries/utils.php');
 require_once('libraries/model/Article.php');
 
-$modelA = new Article('articles');
+$modelA = new Article();
 
 /**
  * 1. On vérifie que le GET possède bien un paramètre "id" (delete.php?id=202) et que c'est bien un nombre

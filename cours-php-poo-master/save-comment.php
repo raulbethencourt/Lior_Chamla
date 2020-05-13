@@ -18,8 +18,8 @@ require_once('libraries/utils.php');
 require_once('libraries/model/Article.php');
 require_once('libraries/model/Comment.php');
 
-$modelA = new Article('articles');
-$modelC = new Comment('comments');
+$modelA = new Article();
+$modelC = new Comment();
 
 /**
  * 1. On vérifie que les données ont bien été envoyées en POST

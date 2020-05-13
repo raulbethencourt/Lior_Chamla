@@ -9,13 +9,15 @@
 require_once('libraries/database.php');
 require_once('libraries/utils.php');
 require_once('libraries/model/Article.php');
+require_once('libraries/model/User.php');
 
-$modelA = new Article('articles');
+$modelA = new Article();
+
 
 /**
  * 2. Récupération des articles
  */
-$articles = $modelA->findAll();
+$articles = $modelA->findAll('created_at DESC');
 
 /**
  * 3. Affichage
