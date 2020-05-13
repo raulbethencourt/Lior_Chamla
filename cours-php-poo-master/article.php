@@ -12,6 +12,12 @@
  */
 require_once('libraries/database.php');
 require_once('libraries/utils.php');
+require_once('libraries/model/Article.php');
+require_once('libraries/model/Comment.php');
+
+$modelA = new Article();
+$modelC = new Comment();
+
 /**
  * 1. Récupération du param "id" et vérification de celui-ci
  */
@@ -33,13 +39,13 @@ if (!$article_id) {
  * On va ici utiliser une requête préparée car elle inclue une variable qui provient de l'utilisateur : Ne faites
  * jamais confiance à ce connard d'utilisateur ! :D
  */
-$article = findArticle($article_id);
+$modelA->find($article_id);
 
 /**
  * 4. Récupération des commentaires de l'article en question
  * Pareil, toujours une requête préparée pour sécuriser la donnée filée par l'utilisateur (cet enfoiré en puissance !)
  */
-$commentaires = findAllComments($article_id);
+$modelC->findAll($article_id);
 
 /**
  * 5. On affiche 
