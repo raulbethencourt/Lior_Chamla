@@ -2,11 +2,6 @@
 
 namespace Controllers;
 
-require_once('libraries/utils.php');
-require_once('libraries/model/Comment.php');
-require_once('libraries/model/Article.php');
-require_once('libraries/controllers/Controller.php');
-
 class Comment extends Controller
 {
     protected $_modelName = \Models\Comment::class;
@@ -41,7 +36,7 @@ class Comment extends Controller
         /**
          * 5. Redirection vers l'article en question
          */
-        redirect('article.php?id=' . $article_id);
+        \Http::redirect('index.php?controller=article&task=show&id=' . $article_id);
     }
 
     public function insert()
@@ -100,6 +95,6 @@ class Comment extends Controller
         $this->_model->insert($author, $content, $article_id);
 
         // 4. Redirection vers l'article en question :
-        redirect('article.php?id=' . $article_id);
+        \Http::redirect('index.php?controller=article&task=show&id=' . $article_id);
     }
 }

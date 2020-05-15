@@ -2,8 +2,6 @@
 
 namespace Models;
 
-require_once('libraries/database.php');
-
 abstract class Model
 {
     /**
@@ -20,7 +18,7 @@ abstract class Model
      */
     public function __construct()
     {
-        $this->_pdo      = getPdo();
+        $this->_pdo = \Dao::getPdo();
     }
 
     /**
@@ -48,25 +46,5 @@ abstract class Model
     {
         $query = $this->_pdo->prepare("DELETE FROM {$this->_table} WHERE id = :id");
         $query->execute(['id' => $id]);
-    }
-
-    /**
-     * Retourne la liste des articles classés par date de création
-     *
-     * @return array
-     */
-    public function findAll(?string $order = ""): array
-    {
-        $sql = "SELECT * FROM {$this->_table}";
-        
-        if ($order) {
-            $sql .= " ORDER BY " . $order;
-        }
-        
-        $resultats = $this->_pdo->query($sql);
-        // On fouille le résultat pour en extraire les données réelles
-        $articles = $resultats->fetchAll();
-
-        return $articles;
     }
 }
